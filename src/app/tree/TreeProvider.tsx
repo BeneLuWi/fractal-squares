@@ -8,6 +8,8 @@ export type TreeContextType = {
   setTree: (node: SquareNode) => void
 }
 
+export const useTree = () => React.useContext(TreeContext)
+
 const TreeContext = React.createContext<TreeContextType>(null!)
 
 const TreeProvider: FunctionComponent<TreeProviderProps> = ({ children }) => {
@@ -17,7 +19,7 @@ const TreeProvider: FunctionComponent<TreeProviderProps> = ({ children }) => {
    *
    *******************************************************************************************************************/
 
-  const [tree, setTree] = useState<SquareNode>({ color: 'white' })
+  const [tree, setTree] = useState<SquareNode>({ color: 'black' })
 
   /*******************************************************************************************************************
    *
