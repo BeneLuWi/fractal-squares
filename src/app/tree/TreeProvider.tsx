@@ -1,16 +1,23 @@
-import React, { FunctionComponent } from 'react'
-import './style.css'
-import { SquareNode } from './types'
-type SquareProps = {
-  path?: string[]
+import React, { FunctionComponent, useState } from 'react'
+import { SquareNode } from '../square/types'
+
+type TreeProviderProps = {}
+
+export type TreeContextType = {
+  tree: SquareNode
+  setTree: (node: SquareNode) => void
 }
 
-const Square: FunctionComponent<SquareProps> = ({ path }) => {
+const TreeContext = React.createContext<TreeContextType>(null!)
+
+const TreeProvider: FunctionComponent<TreeProviderProps> = ({ children }) => {
   /*******************************************************************************************************************
    *
    *  Hooks
    *
    *******************************************************************************************************************/
+
+  const [tree, setTree] = useState<SquareNode>({ color: 'white' })
 
   /*******************************************************************************************************************
    *
@@ -24,7 +31,7 @@ const Square: FunctionComponent<SquareProps> = ({ path }) => {
    *
    *******************************************************************************************************************/
 
-  return <div className='square border'></div>
+  return <TreeContext.Provider value={{ tree: tree, setTree: setTree }}>{children}</TreeContext.Provider>
 }
 
-export default Square
+export default TreeProvider

@@ -1,12 +1,17 @@
 import React from 'react'
-import { Container } from 'react-bootstrap'
+import Square from './square/Square'
+import TreeProvider from './tree/TreeProvider'
 
 const App: React.FunctionComponent = () => {
   return (
     <div className='bg-light w-100'>
-      <Container className='vh-100 bg-white' style={{ maxWidth: 500 }}>
-        Hello
-      </Container>
+      <div className='vh-100 bg-white m-auto d-flex flex-column justify-content-between' style={{ maxWidth: 500 }}>
+        <div className='display-4'>Fractal Squares</div>
+        <TreeProvider>
+          <Square />
+        </TreeProvider>
+        <div className='w-100 bg-primary' style={{ height: 50 }} />
+      </div>
     </div>
   )
 }

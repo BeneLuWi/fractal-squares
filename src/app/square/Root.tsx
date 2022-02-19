@@ -1,11 +1,8 @@
 import React, { FunctionComponent } from 'react'
-import './style.css'
-import { SquareNode } from './types'
-type SquareProps = {
-  path?: string[]
-}
 
-const Square: FunctionComponent<SquareProps> = ({ path }) => {
+type RootProps = {}
+
+const Root: FunctionComponent<RootProps> = ({}) => {
   /*******************************************************************************************************************
    *
    *  Hooks
@@ -24,7 +21,7 @@ const Square: FunctionComponent<SquareProps> = ({ path }) => {
    *
    *******************************************************************************************************************/
 
-  return <div className='square border'></div>
+  return <div>Root</div>
 }
 
-export default Square
+export default Root
