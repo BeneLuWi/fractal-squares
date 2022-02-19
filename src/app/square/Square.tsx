@@ -1,10 +1,10 @@
 import React, { FunctionComponent } from 'react'
 import './style.css'
-import { SquareNode } from './types'
+import { SquareNode, SquarePath } from './types'
 import { useTree } from '../tree/TreeProvider'
 
 type SquareProps = {
-  path: ('a' | 'b' | 'c' | 'd')[]
+  path: SquarePath
   color?: string
 }
 
@@ -15,7 +15,7 @@ const Square: FunctionComponent<SquareProps> = ({ path, color }) => {
    *
    *******************************************************************************************************************/
 
-  const { tree } = useTree()
+  const { tree, updateNode } = useTree()
 
   /*******************************************************************************************************************
    *
@@ -48,7 +48,7 @@ const Square: FunctionComponent<SquareProps> = ({ path, color }) => {
         </div>
       </div>
     )
-  else return <div className='square' style={{ backgroundColor: node.color }} />
+  else return <div className='square' onClick={() => updateNode(path, node)} style={{ backgroundColor: node.color }} />
 }
 
 export default Square

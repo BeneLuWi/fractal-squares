@@ -1,11 +1,11 @@
 import React, { FunctionComponent, useState } from 'react'
-import { SquareNode } from '../square/types'
+import { SquareNode, SquarePath } from '../square/types'
 
 type TreeProviderProps = {}
 
 export type TreeContextType = {
   tree: SquareNode
-  setTree: (node: SquareNode) => void
+  updateNode: (path: SquarePath, node: SquareNode) => void
 }
 
 export const useTree = () => React.useContext(TreeContext)
@@ -27,13 +27,15 @@ const TreeProvider: FunctionComponent<TreeProviderProps> = ({ children }) => {
    *
    *******************************************************************************************************************/
 
+  const updateNode = (path: SquarePath, node: SquareNode) => {}
+
   /*******************************************************************************************************************
    *
    *  Rendering
    *
    *******************************************************************************************************************/
 
-  return <TreeContext.Provider value={{ tree: tree, setTree: setTree }}>{children}</TreeContext.Provider>
+  return <TreeContext.Provider value={{ tree, updateNode }}>{children}</TreeContext.Provider>
 }
 
 export default TreeProvider
