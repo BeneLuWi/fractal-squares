@@ -1,5 +1,6 @@
 import React, { FunctionComponent, useState } from 'react'
 import { SquareNode, SquarePath } from '../square/types'
+import { updateNodeInTree } from './TreeService'
 
 type TreeProviderProps = {}
 
@@ -27,7 +28,19 @@ const TreeProvider: FunctionComponent<TreeProviderProps> = ({ children }) => {
    *
    *******************************************************************************************************************/
 
-  const updateNode = (path: SquarePath, node: SquareNode) => {}
+  const updateNode = (path: SquarePath, node: SquareNode) => {
+    console.log(path)
+    let newTree: SquareNode = JSON.parse(JSON.stringify(tree))
+    const newNode = {
+      a: { color: '#265728' },
+      b: { color: '#357a38' },
+      c: { color: '#459c48' },
+      d: { color: '#93cf95' },
+    }
+    newTree = updateNodeInTree(path, newNode, newTree)
+    console.log(newTree)
+    setTree(newTree)
+  }
 
   /*******************************************************************************************************************
    *
