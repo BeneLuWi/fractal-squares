@@ -34,7 +34,12 @@ const Square: FunctionComponent<SquareProps> = ({ path, color }) => {
    *  Rendering
    *
    *******************************************************************************************************************/
-
+  const newNode = {
+    a: { color: '#265728' },
+    b: { color: '#357a38' },
+    c: { color: '#459c48' },
+    d: { color: '#93cf95' },
+  }
   if (node.a || node.b || node.c || node.d)
     return (
       <div className='square'>
@@ -48,7 +53,8 @@ const Square: FunctionComponent<SquareProps> = ({ path, color }) => {
         </div>
       </div>
     )
-  else return <div className='square' onClick={() => updateNode(path, node)} style={{ backgroundColor: node.color }} />
+  else
+    return <div className='square' onClick={() => updateNode(path, newNode)} style={{ backgroundColor: node.color }} />
 }
 
 export default Square

@@ -29,15 +29,8 @@ const TreeProvider: FunctionComponent<TreeProviderProps> = ({ children }) => {
    *******************************************************************************************************************/
 
   const updateNode = (path: SquarePath, node: SquareNode) => {
-    console.log(path)
     let newTree: SquareNode = JSON.parse(JSON.stringify(tree))
-    const newNode = {
-      a: { color: '#265728' },
-      b: { color: '#357a38' },
-      c: { color: '#459c48' },
-      d: { color: '#93cf95' },
-    }
-    setTree(updateNodeInTree(path, newNode, newTree))
+    setTree(updateNodeInTree(path, node, newTree))
   }
 
   /*******************************************************************************************************************
