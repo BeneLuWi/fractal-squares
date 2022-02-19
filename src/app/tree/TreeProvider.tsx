@@ -37,9 +37,7 @@ const TreeProvider: FunctionComponent<TreeProviderProps> = ({ children }) => {
       c: { color: '#459c48' },
       d: { color: '#93cf95' },
     }
-    newTree = updateNodeInTree(path, newNode, newTree)
-    console.log(newTree)
-    setTree(newTree)
+    setTree(updateNodeInTree(path, newNode, newTree))
   }
 
   /*******************************************************************************************************************
