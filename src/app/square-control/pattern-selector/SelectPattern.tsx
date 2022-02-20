@@ -42,14 +42,16 @@ const SelectPattern: FunctionComponent<SelectPatternProps> = ({}) => {
         <PatternSquare pattern={selectedPattern} />
       </div>
       <PatternModal show={showSelector} close={toggleSelector}>
-        <div className='d-flex justify-content-around row'>
-          {patterns
-            .filter((p) => !p.single)
-            .map((p) => (
-              <div key={p.id} onClick={() => handleSelect(p)} className='m-3' style={{ width: 120 }}>
-                <PatternSquare pattern={p} />
-              </div>
-            ))}
+        <div className='overflow-auto'>
+          <div className='d-flex justify-content-around row'>
+            {patterns
+              .filter((p) => !p.single)
+              .map((p) => (
+                <div key={p.id} onClick={() => handleSelect(p)} className='m-3' style={{ width: 120 }}>
+                  <PatternSquare pattern={p} />
+                </div>
+              ))}
+          </div>
         </div>
         <hr className='text-white' />
         <div className='d-flex'>

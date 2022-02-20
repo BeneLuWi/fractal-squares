@@ -27,7 +27,7 @@ const PatternModal: FunctionComponent<PatternModalProps> = ({ show, close, child
   if (!show) return <></>
 
   return (
-    <div style={{ bottom: 100, maxWidth: 450 }} className='position-absolute bg-dark bg-opacity-75 rounded'>
+    <div style={{ bottom: 100, maxWidth: 400 }} className='position-absolute bg-dark bg-opacity-75 rounded'>
       {children}
     </div>
   )
