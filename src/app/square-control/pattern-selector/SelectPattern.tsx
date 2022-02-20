@@ -14,7 +14,7 @@ const SelectPattern: FunctionComponent<SelectPatternProps> = ({}) => {
    *******************************************************************************************************************/
 
   const [showSelector, setShowSelector] = useState(false)
-  const { setPattern, patterns } = useColor()
+  const { selectedPattern, setPattern, patterns } = useColor()
 
   /*******************************************************************************************************************
    *
@@ -37,9 +37,9 @@ const SelectPattern: FunctionComponent<SelectPatternProps> = ({}) => {
 
   return (
     <>
-      <Button variant='dark' onClick={toggleSelector}>
-        Next
-      </Button>
+      <div className='shadow' onClick={toggleSelector} style={{ width: 40 }}>
+        <PatternSquare pattern={selectedPattern} />
+      </div>
       <Modal show={showSelector} onHide={toggleSelector}>
         <Modal.Body>
           <div className='d-flex justify-content-around row'>
