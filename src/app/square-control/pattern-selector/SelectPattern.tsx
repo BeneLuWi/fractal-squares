@@ -3,6 +3,7 @@ import PatternSquare from './PatternSquare'
 import { useColor } from '../../color/ColorProvider'
 import { Pattern } from '../../color/patterns'
 import PatternModal from './PatternModal'
+import { PatternFactory } from '../../color/ColorService'
 
 type SelectPatternProps = {}
 
@@ -14,7 +15,7 @@ const SelectPattern: FunctionComponent<SelectPatternProps> = ({}) => {
    *******************************************************************************************************************/
 
   const [showSelector, setShowSelector] = useState(false)
-  const { selectedPattern, setPattern, patterns } = useColor()
+  const { selectedPattern, setPattern, patterns, selectedBasePattern } = useColor()
 
   /*******************************************************************************************************************
    *
@@ -42,11 +43,25 @@ const SelectPattern: FunctionComponent<SelectPatternProps> = ({}) => {
       </div>
       <PatternModal show={showSelector} close={toggleSelector}>
         <div className='d-flex justify-content-around row'>
-          {patterns.map((p) => (
+          {patterns
+            .filter((p) => !p.single)
+            .map((p) => (
+              <div key={p.id} onClick={() => handleSelect(p)} className='m-3' style={{ width: 120 }}>
+                <PatternSquare pattern={p} />
+              </div>
+            ))}
+        </div>
+        <hr className='text-white' />
+        <div className='d-flex'>
+          {PatternFactory(selectedBasePattern).map((p) => (
             <div key={p.id} onClick={() => handleSelect(p)} className='m-3' style={{ width: 120 }}>
               <PatternSquare pattern={p} />
             </div>
           ))}
+          <div className='text-white vr' />
+          <div onClick={() => handleSelect(selectedBasePattern)} className='m-3' style={{ width: 120 }}>
+            <PatternSquare pattern={selectedBasePattern} />
+          </div>
         </div>
       </PatternModal>
     </>

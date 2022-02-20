@@ -23,9 +23,15 @@ const ZoomSquare: FunctionComponent<ZoomSquareProps> = ({}) => {
    *
    *******************************************************************************************************************/
 
-  if (!zoomPath.length) return <Square path={[]} />
+  return (
+    <div>
+      <Square path={[]} />
+    </div>
+  )
 
-  return <Square path={zoomPath} />
+  // if (!zoomPath.length) return <Square path={[]} />
+  //
+  // return <Square path={zoomPath} />
 }
 
 export default ZoomSquare

@@ -6,6 +6,7 @@ type ColorProviderProps = {}
 export interface ColorContextType {
   patterns: Pattern[]
   selectedPattern: Pattern
+  selectedBasePattern: Pattern
   setPattern: (pattern: Pattern) => void
 }
 
@@ -25,6 +26,7 @@ const ColorProvider: FunctionComponent<ColorProviderProps> = ({ children }) => {
   const [patterns, setPatterns] = useState<Pattern[]>(DefaultPatterns)
 
   const [selectedPattern, setSelectedPattern] = useState<Pattern>(DefaultPatterns[0])
+  const [selectedBasePattern, setSelectedBasePattern] = useState<Pattern>(DefaultPatterns[0])
 
   /*******************************************************************************************************************
    *
@@ -33,6 +35,7 @@ const ColorProvider: FunctionComponent<ColorProviderProps> = ({ children }) => {
    *******************************************************************************************************************/
 
   const setPattern = (pattern: Pattern) => {
+    if (!pattern.single) setSelectedBasePattern(pattern)
     setSelectedPattern(pattern)
   }
 
@@ -42,7 +45,11 @@ const ColorProvider: FunctionComponent<ColorProviderProps> = ({ children }) => {
    *
    *******************************************************************************************************************/
 
-  return <ColorContext.Provider value={{ patterns, selectedPattern, setPattern }}>{children}</ColorContext.Provider>
+  return (
+    <ColorContext.Provider value={{ patterns, selectedPattern, selectedBasePattern, setPattern }}>
+      {children}
+    </ColorContext.Provider>
+  )
 }
 
 export default ColorProvider
