@@ -1,8 +1,9 @@
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent, MouseEvent as ReactMouseEvent } from 'react'
 import './style.css'
 import { SquareNode, SquarePath } from './types'
 import { useTree } from '../tree/TreeProvider'
-import { Spring, a } from 'react-spring'
+import { a, Spring } from 'react-spring'
+import { LongPressDetectEvents, LongPressEvent, useLongPress } from 'use-long-press'
 
 type SquareProps = {
   path: SquarePath
@@ -30,10 +31,20 @@ const Square: FunctionComponent<SquareProps> = ({ path, color }) => {
   })
   const node = treeIter
 
-  const handleClick = () => {
-    updateNode(path, { color: node.color })
+  const handleClick = (event?: any) => {
+    console.log(event)
+    if (event && event.type === 'mouseup') updateNode(path, { color: node.color })
     // zoomIn(path)
   }
+
+  const handleRemove = () => {
+    updateNode(path.slice(0, path.length - 1), { color: node.color }, true)
+  }
+
+  const handleTouch = useLongPress(handleRemove, {
+    onCancel: (event) => handleClick(event),
+    captureEvent: true,
+  })
 
   /*******************************************************************************************************************
    *
@@ -59,9 +70,7 @@ const Square: FunctionComponent<SquareProps> = ({ path, color }) => {
         from={{ opacity: 1, transform: path.length ? 'scale(0.8)' : 'scale(1)' }}
         to={{ opacity: 1, transform: 'scale(1)' }}
       >
-        {(styles) => (
-          <a.div style={{ ...styles, backgroundColor: node.color }} className='square' onClick={handleClick} />
-        )}
+        {(styles) => <a.div style={{ ...styles, backgroundColor: node.color }} className='square' {...handleTouch} />}
       </Spring>
     )
 }

@@ -7,7 +7,7 @@ type TreeProviderProps = {}
 
 export type TreeContextType = {
   tree: SquareNode
-  updateNode: (path: SquarePath, node?: SquareNode) => void
+  updateNode: (path: SquarePath, node?: SquareNode, expand?: boolean) => void
   undo: VoidFunction
   zoomPath: SquarePath
   zoomIn: (path: SquarePath) => void
@@ -40,13 +40,13 @@ const TreeProvider: FunctionComponent<TreeProviderProps> = ({ children }) => {
    *
    *******************************************************************************************************************/
 
-  const updateNode = (path: SquarePath, node?: SquareNode) => {
+  const updateNode = (path: SquarePath, node?: SquareNode, expand?: boolean) => {
     // Reset the Tree
     if (!node) {
       setTree(defaultTree)
       setZoomPath([])
     } else {
-      const newNode = selectedPattern.single ? selectedPattern.a : { ...node, ...selectedPattern }
+      const newNode = expand ? node : selectedPattern.single ? selectedPattern.a : { ...node, ...selectedPattern }
       let newTree: SquareNode = updateNodeInTree(path, newNode, JSON.parse(JSON.stringify(tree)))
       setTree(newTree)
       setHistory([...history, newTree])
