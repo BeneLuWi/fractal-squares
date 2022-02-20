@@ -1,17 +1,16 @@
 import React, { FunctionComponent } from 'react'
-import ResetSquare from './ResetSquare'
-import UndoLast from './UndoLast'
-import ZoomOut from './ZoomOut'
+import { useTree } from '../tree/TreeProvider'
+import Square from './Square'
 
-type SquareControlProps = {}
+type ZoomSquareProps = {}
 
-const SquareControl: FunctionComponent<SquareControlProps> = () => {
+const ZoomSquare: FunctionComponent<ZoomSquareProps> = ({}) => {
   /*******************************************************************************************************************
    *
    *  Hooks
    *
    *******************************************************************************************************************/
-
+  const { zoomPath } = useTree()
   /*******************************************************************************************************************
    *
    *  Functions
@@ -24,13 +23,9 @@ const SquareControl: FunctionComponent<SquareControlProps> = () => {
    *
    *******************************************************************************************************************/
 
-  return (
-    <div className='d-flex justify-content-around p-3'>
-      <UndoLast />
-      {/*<ZoomOut />*/}
-      <ResetSquare />
-    </div>
-  )
+  if (!zoomPath.length) return <Square path={[]} />
+
+  return <Square path={zoomPath} />
 }
 
-export default SquareControl
+export default ZoomSquare

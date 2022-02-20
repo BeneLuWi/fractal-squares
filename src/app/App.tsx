@@ -2,6 +2,7 @@ import React from 'react'
 import Square from './square/Square'
 import TreeProvider from './tree/TreeProvider'
 import SquareControl from './square-control/SquareControl'
+import ZoomSquare from './square/ZoomSquare'
 
 const App: React.FunctionComponent = () => {
   return (
@@ -17,8 +18,8 @@ const App: React.FunctionComponent = () => {
           style={{ maxWidth: 500 }}
         >
           <div className='display-2 text-white-50'>Fractal Squares</div>
-          <Square path={[]} />
 
+          <ZoomSquare />
           <SquareControl />
         </div>
       </div>

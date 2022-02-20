@@ -8,6 +8,8 @@ export type TreeContextType = {
   tree: SquareNode
   updateNode: (path: SquarePath, node: SquareNode) => void
   undo: VoidFunction
+  zoomPath: SquarePath
+  zoomIn: (path: SquarePath) => void
 }
 
 export const useTree = () => React.useContext(TreeContext)
@@ -25,6 +27,8 @@ const TreeProvider: FunctionComponent<TreeProviderProps> = ({ children }) => {
 
   const [history, setHistory] = useState<SquareNode[]>([{ color: 'rgba(113,113,113,1)' }])
 
+  const [zoomPath, setZoomPath] = useState<SquarePath>([])
+
   /*******************************************************************************************************************
    *
    *  Functions
@@ -34,6 +38,7 @@ const TreeProvider: FunctionComponent<TreeProviderProps> = ({ children }) => {
   const updateNode = (path: SquarePath, node: SquareNode) => {
     let newTree: SquareNode = updateNodeInTree(path, node, JSON.parse(JSON.stringify(tree)))
     setHistory([...history, newTree])
+    if (!path.length) setZoomPath([])
     setTree(newTree)
   }
 
@@ -43,13 +48,18 @@ const TreeProvider: FunctionComponent<TreeProviderProps> = ({ children }) => {
     setHistory(history.slice(0, history.length - 1))
   }
 
+  const zoomIn = (path: SquarePath) => {
+    console.log(path)
+    setZoomPath(path)
+  }
+
   /*******************************************************************************************************************
    *
    *  Rendering
    *
    *******************************************************************************************************************/
 
-  return <TreeContext.Provider value={{ tree, updateNode, undo }}>{children}</TreeContext.Provider>
+  return <TreeContext.Provider value={{ tree, updateNode, undo, zoomPath, zoomIn }}>{children}</TreeContext.Provider>
 }
 
 export default TreeProvider

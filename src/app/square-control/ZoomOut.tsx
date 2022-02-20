@@ -1,22 +1,27 @@
 import React, { FunctionComponent } from 'react'
-import ResetSquare from './ResetSquare'
-import UndoLast from './UndoLast'
-import ZoomOut from './ZoomOut'
+import { Button } from 'react-bootstrap'
+import { useTree } from '../tree/TreeProvider'
 
-type SquareControlProps = {}
+type ZoomOutProps = {}
 
-const SquareControl: FunctionComponent<SquareControlProps> = () => {
+const ZoomOut: FunctionComponent<ZoomOutProps> = () => {
   /*******************************************************************************************************************
    *
    *  Hooks
    *
    *******************************************************************************************************************/
 
+  const { zoomIn } = useTree()
+
   /*******************************************************************************************************************
    *
    *  Functions
    *
    *******************************************************************************************************************/
+
+  const handleClick = () => {
+    zoomIn([])
+  }
 
   /*******************************************************************************************************************
    *
@@ -25,12 +30,10 @@ const SquareControl: FunctionComponent<SquareControlProps> = () => {
    *******************************************************************************************************************/
 
   return (
-    <div className='d-flex justify-content-around p-3'>
-      <UndoLast />
-      {/*<ZoomOut />*/}
-      <ResetSquare />
-    </div>
+    <Button variant='dark' onClick={handleClick} className='rounded-circle'>
+      <i className='bi bi-arrows-fullscreen' />
+    </Button>
   )
 }
 
-export default SquareControl
+export default ZoomOut

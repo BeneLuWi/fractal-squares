@@ -16,7 +16,7 @@ const Square: FunctionComponent<SquareProps> = ({ path, color }) => {
    *
    *******************************************************************************************************************/
 
-  const { tree, updateNode } = useTree()
+  const { tree, updateNode, zoomIn } = useTree()
 
   /*******************************************************************************************************************
    *
@@ -29,6 +29,11 @@ const Square: FunctionComponent<SquareProps> = ({ path, color }) => {
     if (treeIter && (treeIter[n] || treeIter.color)) treeIter = treeIter[n]
   })
   const node = treeIter
+
+  const handleClick = () => {
+    updateNode(path, newNode)
+    // zoomIn(path)
+  }
 
   /*******************************************************************************************************************
    *
@@ -62,11 +67,7 @@ const Square: FunctionComponent<SquareProps> = ({ path, color }) => {
         to={{ opacity: 1, transform: 'scale(1)' }}
       >
         {(styles) => (
-          <a.div
-            style={{ ...styles, backgroundColor: node.color }}
-            className='square'
-            onClick={() => updateNode(path, newNode)}
-          />
+          <a.div style={{ ...styles, backgroundColor: node.color }} className='square' onClick={handleClick} />
         )}
       </Spring>
     )
