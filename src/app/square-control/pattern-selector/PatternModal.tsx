@@ -1,8 +1,11 @@
 import React, { FunctionComponent } from 'react'
 
-type PatternModalProps = {}
+type PatternModalProps = {
+  show: boolean
+  close: VoidFunction
+}
 
-const PatternModal: FunctionComponent<PatternModalProps> = ({}) => {
+const PatternModal: FunctionComponent<PatternModalProps> = ({ show, close, children }) => {
   /*******************************************************************************************************************
    *
    *  Hooks
@@ -21,7 +24,13 @@ const PatternModal: FunctionComponent<PatternModalProps> = ({}) => {
    *
    *******************************************************************************************************************/
 
-  return <div>PatternModal</div>
+  if (!show) return <></>
+
+  return (
+    <div style={{ bottom: 100, maxWidth: 450 }} className='position-absolute bg-dark bg-opacity-75 rounded'>
+      {children}
+    </div>
+  )
 }
 
 export default PatternModal
