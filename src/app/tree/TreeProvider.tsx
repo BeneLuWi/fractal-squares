@@ -1,12 +1,13 @@
 import React, { FunctionComponent, useState } from 'react'
 import { SquareNode, SquarePath } from '../square/types'
 import { updateNodeInTree } from './TreeService'
+import { useColor } from '../color/ColorProvider'
 
 type TreeProviderProps = {}
 
 export type TreeContextType = {
   tree: SquareNode
-  updateNode: (path: SquarePath, node: SquareNode) => void
+  updateNode: (path: SquarePath, node?: SquareNode) => void
   undo: VoidFunction
   zoomPath: SquarePath
   zoomIn: (path: SquarePath) => void
@@ -16,6 +17,8 @@ export const useTree = () => React.useContext(TreeContext)
 
 const TreeContext = React.createContext<TreeContextType>(null!)
 
+const defaultTree = { color: 'rgba(113,113,113,1)' }
+
 const TreeProvider: FunctionComponent<TreeProviderProps> = ({ children }) => {
   /*******************************************************************************************************************
    *
@@ -23,9 +26,11 @@ const TreeProvider: FunctionComponent<TreeProviderProps> = ({ children }) => {
    *
    *******************************************************************************************************************/
 
-  const [tree, setTree] = useState<SquareNode>({ color: 'rgba(113,113,113,1)' })
+  const { selectedPattern } = useColor()
 
-  const [history, setHistory] = useState<SquareNode[]>([{ color: 'rgba(113,113,113,1)' }])
+  const [tree, setTree] = useState<SquareNode>(defaultTree)
+
+  const [history, setHistory] = useState<SquareNode[]>([defaultTree])
 
   const [zoomPath, setZoomPath] = useState<SquarePath>([])
 
@@ -35,11 +40,20 @@ const TreeProvider: FunctionComponent<TreeProviderProps> = ({ children }) => {
    *
    *******************************************************************************************************************/
 
-  const updateNode = (path: SquarePath, node: SquareNode) => {
-    let newTree: SquareNode = updateNodeInTree(path, node, JSON.parse(JSON.stringify(tree)))
-    setHistory([...history, newTree])
-    if (!path.length) setZoomPath([])
-    setTree(newTree)
+  const updateNode = (path: SquarePath, node?: SquareNode) => {
+    // Reset the Tree
+    if (!node) {
+      setTree(defaultTree)
+      setZoomPath([])
+    } else {
+      let newTree: SquareNode = updateNodeInTree(
+        path,
+        { ...node, ...selectedPattern },
+        JSON.parse(JSON.stringify(tree))
+      )
+      setTree(newTree)
+      setHistory([...history, newTree])
+    }
   }
 
   const undo = () => {
@@ -49,7 +63,6 @@ const TreeProvider: FunctionComponent<TreeProviderProps> = ({ children }) => {
   }
 
   const zoomIn = (path: SquarePath) => {
-    console.log(path)
     setZoomPath(path)
   }
 

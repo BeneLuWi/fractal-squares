@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect } from 'react'
+import React, { FunctionComponent } from 'react'
 import { useTree } from '../tree/TreeProvider'
 import { useSpring, a, config } from 'react-spring'
 
@@ -28,7 +28,7 @@ const ResetSquare: FunctionComponent<ResetSquareProps> = ({}) => {
       to: [{ transform: `translate(0px, 0px) scale(0.9)` }, { transform: `translate(0px, 0px) scale(1)` }],
       config: { ...config.gentle, duration: 200 },
     })
-    updateNode([], { color: 'rgba(113,113,113,1)' })
+    updateNode([], undefined)
   }
   /*******************************************************************************************************************
    *

@@ -31,7 +31,7 @@ const Square: FunctionComponent<SquareProps> = ({ path, color }) => {
   const node = treeIter
 
   const handleClick = () => {
-    updateNode(path, newNode)
+    updateNode(path, { color: node.color })
     // zoomIn(path)
   }
 
@@ -40,13 +40,6 @@ const Square: FunctionComponent<SquareProps> = ({ path, color }) => {
    *  Rendering
    *
    *******************************************************************************************************************/
-  const newNode = {
-    color: node.color,
-    a: { color: '#265728' },
-    b: { color: '#357a38' },
-    c: { color: '#459c48' },
-    d: { color: '#93cf95' },
-  }
   if (node.a || node.b || node.c || node.d)
     return (
       <div className='square' style={{ backgroundColor: node.color }}>
