@@ -17,13 +17,6 @@ const ResetSquare: FunctionComponent<ResetSquareProps> = ({}) => {
   const { updateNode } = useTree()
   const [styles, api] = useSpring(() => ({ boxShadow: '0 0 0 0 #0ff', transform: 'translate(0px, 0px)' }))
 
-  useEffect(() => {
-    api({
-      to: [{ transform: 'translate(0px, 0px)' }, { boxShadow: defaultShadow }],
-      config: { duration: 200 },
-    })
-  }, [])
-
   /*******************************************************************************************************************
    *
    *  Functions
@@ -35,7 +28,7 @@ const ResetSquare: FunctionComponent<ResetSquareProps> = ({}) => {
       to: [{ transform: `translate(0px, 0px) scale(0.9)` }, { transform: `translate(0px, 0px) scale(1)` }],
       config: { ...config.gentle, duration: 200 },
     })
-    updateNode([], { color: 'black' })
+    updateNode([], { color: 'rgba(113,113,113,1)' })
   }
   /*******************************************************************************************************************
    *

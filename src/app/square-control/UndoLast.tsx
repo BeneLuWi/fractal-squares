@@ -1,15 +1,16 @@
 import React, { FunctionComponent } from 'react'
-import ResetSquare from './ResetSquare'
-import UndoLast from './UndoLast'
+import { useTree } from '../tree/TreeProvider'
+import { Button } from 'react-bootstrap'
 
-type SquareControlProps = {}
+type UndoLastProps = {}
 
-const SquareControl: FunctionComponent<SquareControlProps> = () => {
+const UndoLast: FunctionComponent<UndoLastProps> = () => {
   /*******************************************************************************************************************
    *
    *  Hooks
    *
    *******************************************************************************************************************/
+  const { undo } = useTree()
 
   /*******************************************************************************************************************
    *
@@ -24,11 +25,10 @@ const SquareControl: FunctionComponent<SquareControlProps> = () => {
    *******************************************************************************************************************/
 
   return (
-    <div className='d-flex justify-content-around p-3'>
-      <UndoLast />
-      <ResetSquare />
-    </div>
+    <Button variant='dark' className='rounded-circle' onClick={undo}>
+      <i className='bi bi-arrow-left' />
+    </Button>
   )
 }
 
-export default SquareControl
+export default UndoLast

@@ -57,7 +57,10 @@ const Square: FunctionComponent<SquareProps> = ({ path, color }) => {
     )
   else
     return (
-      <Spring from={{ opacity: 1, transform: 'scale(0.8)' }} to={{ opacity: 1, transform: 'scale(1)' }}>
+      <Spring
+        from={{ opacity: 1, transform: path.length ? 'scale(0.8)' : 'scale(1)' }}
+        to={{ opacity: 1, transform: 'scale(1)' }}
+      >
         {(styles) => (
           <a.div
             style={{ ...styles, backgroundColor: node.color }}

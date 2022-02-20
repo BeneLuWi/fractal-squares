@@ -7,6 +7,7 @@ type TreeProviderProps = {}
 export type TreeContextType = {
   tree: SquareNode
   updateNode: (path: SquarePath, node: SquareNode) => void
+  undo: VoidFunction
 }
 
 export const useTree = () => React.useContext(TreeContext)
@@ -20,7 +21,9 @@ const TreeProvider: FunctionComponent<TreeProviderProps> = ({ children }) => {
    *
    *******************************************************************************************************************/
 
-  const [tree, setTree] = useState<SquareNode>({ color: 'black' })
+  const [tree, setTree] = useState<SquareNode>({ color: 'rgba(113,113,113,1)' })
+
+  const [history, setHistory] = useState<SquareNode[]>([{ color: 'rgba(113,113,113,1)' }])
 
   /*******************************************************************************************************************
    *
@@ -29,8 +32,15 @@ const TreeProvider: FunctionComponent<TreeProviderProps> = ({ children }) => {
    *******************************************************************************************************************/
 
   const updateNode = (path: SquarePath, node: SquareNode) => {
-    let newTree: SquareNode = JSON.parse(JSON.stringify(tree))
-    setTree(updateNodeInTree(path, node, newTree))
+    let newTree: SquareNode = updateNodeInTree(path, node, JSON.parse(JSON.stringify(tree)))
+    setHistory([...history, newTree])
+    setTree(newTree)
+  }
+
+  const undo = () => {
+    if (history.length < 2) return
+    setTree(history[history.length - 2])
+    setHistory(history.slice(0, history.length - 1))
   }
 
   /*******************************************************************************************************************
@@ -39,7 +49,7 @@ const TreeProvider: FunctionComponent<TreeProviderProps> = ({ children }) => {
    *
    *******************************************************************************************************************/
 
-  return <TreeContext.Provider value={{ tree, updateNode }}>{children}</TreeContext.Provider>
+  return <TreeContext.Provider value={{ tree, updateNode, undo }}>{children}</TreeContext.Provider>
 }
 
 export default TreeProvider
