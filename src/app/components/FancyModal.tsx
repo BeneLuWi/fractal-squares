@@ -1,11 +1,11 @@
 import React, { FunctionComponent } from 'react'
 
-type PatternModalProps = {
+type FancyModalProps = {
   show: boolean
   close: VoidFunction
 }
 
-const PatternModal: FunctionComponent<PatternModalProps> = ({ show, close, children }) => {
+const FancyModal: FunctionComponent<FancyModalProps> = ({ show, close, children }) => {
   /*******************************************************************************************************************
    *
    *  Hooks
@@ -33,4 +33,4 @@ const PatternModal: FunctionComponent<PatternModalProps> = ({ show, close, child
   )
 }
 
-export default PatternModal
+export default FancyModal
