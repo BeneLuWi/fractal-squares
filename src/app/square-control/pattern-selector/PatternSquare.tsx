@@ -1,12 +1,11 @@
 import React, { FunctionComponent } from 'react'
-import ResetSquare from './ResetSquare'
-import UndoLast from './UndoLast'
-import ZoomOut from './ZoomOut'
-import SelectPattern from './pattern-selector/SelectPattern'
+import { Pattern } from '../../color/patterns'
 
-type SquareControlProps = {}
+type PatternSquareProps = {
+  pattern: Pattern
+}
 
-const SquareControl: FunctionComponent<SquareControlProps> = () => {
+const PatternSquare: FunctionComponent<PatternSquareProps> = ({ pattern }) => {
   /*******************************************************************************************************************
    *
    *  Hooks
@@ -26,13 +25,25 @@ const SquareControl: FunctionComponent<SquareControlProps> = () => {
    *******************************************************************************************************************/
 
   return (
-    <div className='d-flex justify-content-around p-3'>
-      <UndoLast />
-      {/*<ZoomOut />*/}
-      <SelectPattern />
-      <ResetSquare />
+    <div className='square'>
+      <div className='d-flex w-100'>
+        <div className='w-50'>
+          <div className='square' style={{ backgroundColor: pattern.a.color }} />
+        </div>
+        <div className='w-50'>
+          <div className='square' style={{ backgroundColor: pattern.b.color }} />
+        </div>
+      </div>
+      <div className='d-flex w-100'>
+        <div className='w-50'>
+          <div className='square' style={{ backgroundColor: pattern.c.color }} />
+        </div>
+        <div className='w-50'>
+          <div className='square' style={{ backgroundColor: pattern.d.color }} />
+        </div>
+      </div>
     </div>
   )
 }
 
-export default SquareControl
+export default PatternSquare

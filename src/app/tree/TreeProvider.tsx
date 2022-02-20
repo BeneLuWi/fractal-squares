@@ -46,11 +46,8 @@ const TreeProvider: FunctionComponent<TreeProviderProps> = ({ children }) => {
       setTree(defaultTree)
       setZoomPath([])
     } else {
-      let newTree: SquareNode = updateNodeInTree(
-        path,
-        { ...node, ...selectedPattern },
-        JSON.parse(JSON.stringify(tree))
-      )
+      const newNode = selectedPattern.single ? selectedPattern.a : { ...node, ...selectedPattern }
+      let newTree: SquareNode = updateNodeInTree(path, newNode, JSON.parse(JSON.stringify(tree)))
       setTree(newTree)
       setHistory([...history, newTree])
     }
