@@ -2,6 +2,7 @@ import React, { FunctionComponent } from 'react'
 import './style.css'
 import { SquareNode, SquarePath } from './types'
 import { useTree } from '../tree/TreeProvider'
+import { Spring, a } from 'react-spring'
 
 type SquareProps = {
   path: SquarePath
@@ -35,6 +36,7 @@ const Square: FunctionComponent<SquareProps> = ({ path, color }) => {
    *
    *******************************************************************************************************************/
   const newNode = {
+    color: node.color,
     a: { color: '#265728' },
     b: { color: '#357a38' },
     c: { color: '#459c48' },
@@ -42,7 +44,7 @@ const Square: FunctionComponent<SquareProps> = ({ path, color }) => {
   }
   if (node.a || node.b || node.c || node.d)
     return (
-      <div className='square'>
+      <div className='square' style={{ backgroundColor: node.color }}>
         <div className='d-flex w-100'>
           <div className='w-50'> {node.a && <Square path={[...path, 'a']} />}</div>
           <div className='w-50'> {node.b && <Square path={[...path, 'b']} />}</div>
@@ -54,7 +56,17 @@ const Square: FunctionComponent<SquareProps> = ({ path, color }) => {
       </div>
     )
   else
-    return <div className='square' onClick={() => updateNode(path, newNode)} style={{ backgroundColor: node.color }} />
+    return (
+      <Spring from={{ opacity: 1, transform: 'scale(0.8)' }} to={{ opacity: 1, transform: 'scale(1)' }}>
+        {(styles) => (
+          <a.div
+            style={{ ...styles, backgroundColor: node.color }}
+            className='square'
+            onClick={() => updateNode(path, newNode)}
+          />
+        )}
+      </Spring>
+    )
 }
 
 export default Square
