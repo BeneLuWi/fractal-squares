@@ -1,24 +1,26 @@
-import React, { FunctionComponent } from 'react'
-import ResetSquare from './ResetSquare'
-import UndoLast from './UndoLast'
-import ZoomOut from './ZoomOut'
-import SelectPattern from './pattern-selector/SelectPattern'
-import DataControl from './data-control/DataControl'
+import React, { FunctionComponent, useState } from 'react'
+import { Button } from 'react-bootstrap'
+import FancyModal from '../../components/FancyModal'
+import ResetSquare from '../ResetSquare'
 
-type SquareControlProps = {}
+type DataControlProps = {}
 
-const SquareControl: FunctionComponent<SquareControlProps> = () => {
+const DataControl: FunctionComponent<DataControlProps> = ({}) => {
   /*******************************************************************************************************************
    *
    *  Hooks
    *
    *******************************************************************************************************************/
 
+  const [show, setShow] = useState(false)
+
   /*******************************************************************************************************************
    *
    *  Functions
    *
    *******************************************************************************************************************/
+
+  const toggleShow = () => setShow(!show)
 
   /*******************************************************************************************************************
    *
@@ -27,13 +29,18 @@ const SquareControl: FunctionComponent<SquareControlProps> = () => {
    *******************************************************************************************************************/
 
   return (
-    <div className='d-flex justify-content-around p-3'>
-      <UndoLast />
-      {/*<ZoomOut />*/}
-      <SelectPattern />
-      <ResetSquare />
-    </div>
+    <>
+      <Button variant='dark' className='rounded-circle' onClick={toggleShow}>
+        <i className='bi bi-back' />
+      </Button>
+      <FancyModal show={show} close={toggleShow}>
+        <div className='d-flex justify-content-around p-3' style={{ width: 300 }}>
+          <ResetSquare />
+          <ResetSquare />
+        </div>
+      </FancyModal>
+    </>
   )
 }
 
-export default SquareControl
+export default DataControl
