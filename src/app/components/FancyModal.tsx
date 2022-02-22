@@ -1,11 +1,12 @@
-import React, { FunctionComponent } from 'react'
+import React, { CSSProperties, FunctionComponent } from 'react'
 
 type FancyModalProps = {
   show: boolean
   close: VoidFunction
+  style?: CSSProperties
 }
 
-const FancyModal: FunctionComponent<FancyModalProps> = ({ show, close, children }) => {
+const FancyModal: FunctionComponent<FancyModalProps> = ({ show, close, style, children }) => {
   /*******************************************************************************************************************
    *
    *  Hooks
@@ -27,7 +28,7 @@ const FancyModal: FunctionComponent<FancyModalProps> = ({ show, close, children 
   if (!show) return <></>
 
   return (
-    <div style={{ bottom: 100, maxWidth: 400 }} className='position-absolute bg-dark bg-opacity-75 rounded'>
+    <div style={{ bottom: 100, maxWidth: 500, ...style }} className='position-absolute bg-dark bg-opacity-75 rounded'>
       {children}
     </div>
   )

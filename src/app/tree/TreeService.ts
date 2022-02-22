@@ -10,3 +10,19 @@ export const updateNodeInTree = (path: SquarePath, node: SquareNode, tree: Squar
   }
   return tree
 }
+
+const paths: SquarePath = ['a', 'b', 'c', 'd']
+
+export const updateNodeByCondition = (
+  tree: SquareNode,
+  condition: (node: SquareNode) => boolean,
+  value: SquareNode
+) => {
+  if (condition(tree)) {
+    tree = value
+  } else {
+    paths.forEach((attr) => {
+      if (tree[attr]) updateNodeByCondition(tree[attr]!, condition, value)
+    })
+  }
+}

@@ -32,9 +32,7 @@ const Square: FunctionComponent<SquareProps> = ({ path, color }) => {
   const node = treeIter
 
   const handleClick = (event?: any) => {
-    console.log(event)
     if (event && event.type === 'mouseup') updateNode(path, { color: node.color })
-    // zoomIn(path)
   }
 
   const handleRemove = () => {

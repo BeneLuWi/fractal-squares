@@ -1,4 +1,4 @@
-export interface SquareNode {
+export type SquareNode = {
   color?: string
   a?: SquareNode
   b?: SquareNode

@@ -1,7 +1,5 @@
 import React, { FunctionComponent } from 'react'
-import ResetSquare from './ResetSquare'
 import UndoLast from './UndoLast'
-import ZoomOut from './ZoomOut'
 import SelectPattern from './pattern-selector/SelectPattern'
 import DataControl from './data-control/DataControl'
 
@@ -31,7 +29,7 @@ const SquareControl: FunctionComponent<SquareControlProps> = () => {
       <UndoLast />
       {/*<ZoomOut />*/}
       <SelectPattern />
-      <ResetSquare />
+      <DataControl />
     </div>
   )
 }

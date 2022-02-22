@@ -1,18 +1,16 @@
 import React, { FunctionComponent, useState } from 'react'
 import { Button } from 'react-bootstrap'
-import FancyModal from '../../components/FancyModal'
-import ResetSquare from '../ResetSquare'
-import SquareEditor from '../../square-editor/SquareEditor'
+import FancyModal from '../components/FancyModal'
+import SquareEditor from '../square-editor/SquareEditor'
 
-type DataControlProps = {}
+type EditorControlProps = {}
 
-const DataControl: FunctionComponent<DataControlProps> = ({}) => {
+const EditorControl: FunctionComponent<EditorControlProps> = () => {
   /*******************************************************************************************************************
    *
    *  Hooks
    *
    *******************************************************************************************************************/
-
   const [show, setShow] = useState(false)
 
   /*******************************************************************************************************************
@@ -20,7 +18,6 @@ const DataControl: FunctionComponent<DataControlProps> = ({}) => {
    *  Functions
    *
    *******************************************************************************************************************/
-
   const toggleShow = () => setShow(!show)
 
   /*******************************************************************************************************************
@@ -34,17 +31,13 @@ const DataControl: FunctionComponent<DataControlProps> = ({}) => {
       <Button variant='dark' className='rounded-circle' onClick={toggleShow}>
         <i className='bi bi-back' />
       </Button>
-      <FancyModal style={{ left: 100 }} show={show} close={toggleShow}>
-        <div>
+      <FancyModal show={show} close={toggleShow}>
+        <div className='d-flex justify-content-around p-3' style={{ width: 300 }}>
           <SquareEditor />
-        </div>
-        <hr className='text-white' />
-        <div className='d-flex justify-content-around p-3'>
-          <ResetSquare />
         </div>
       </FancyModal>
     </>
   )
 }
 
-export default DataControl
+export default EditorControl
