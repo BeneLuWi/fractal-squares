@@ -16,13 +16,14 @@ const paths: SquarePath = ['a', 'b', 'c', 'd']
 export const updateNodeByCondition = (
   tree: SquareNode,
   condition: (node: SquareNode) => boolean,
-  value: SquareNode
+  mapping: (node: SquareNode) => SquareNode
 ) => {
+  paths.forEach((attr) => {
+    console.log(tree[attr])
+    if (tree[attr]) updateNodeByCondition(tree[attr]!, condition, mapping)
+  })
   if (condition(tree)) {
-    tree = value
-  } else {
-    paths.forEach((attr) => {
-      if (tree[attr]) updateNodeByCondition(tree[attr]!, condition, value)
-    })
+    tree = mapping(tree)
   }
+  return tree
 }
