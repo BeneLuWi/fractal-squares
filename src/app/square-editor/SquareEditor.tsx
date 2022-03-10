@@ -15,7 +15,14 @@ const SquareEditor: FunctionComponent<SquareEditorProps> = ({}) => {
 
   const { tree, updateNode } = useTree()
 
-  const [code, setCode] = useState('')
+  const [code, setCode] = useState(`const cond = (node) => true
+const mapping = (node) => ({ 
+  color: "blue", 
+  a: {color: "green"},
+ ...node
+})
+
+return updateNodeByCondition(tree, cond, mapping)`)
 
   const [output, setOutput] = useState<string>('')
 
@@ -26,11 +33,19 @@ const SquareEditor: FunctionComponent<SquareEditorProps> = ({}) => {
    *******************************************************************************************************************/
 
   const evaluate = () => {
-    const preamble = `const tree = ${JSON.stringify(tree)};
+    /*const preamble = `const tree = ${JSON.stringify(tree)};
     const updateNodeByCondition = ${updateNodeByCondition};`
     const func = Function(preamble + code)
     const out: SquareNode = func()
     updateNode([], out, true)
+    */
+    const cond = (node: SquareNode) => true
+    const mapping = (node: SquareNode) => ({
+      ...node,
+      color: 'green',
+    })
+
+    updateNode([], updateNodeByCondition(tree, cond, mapping), true)
   }
 
   /*******************************************************************************************************************
