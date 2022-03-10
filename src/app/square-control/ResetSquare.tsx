@@ -4,9 +4,6 @@ import { useSpring, a, config } from 'react-spring'
 
 type ResetSquareProps = {}
 
-// const defaultShadow = '0 0 20px 5px #006600'
-const defaultShadow = '0 0 0 0 #006600'
-
 const ResetSquare: FunctionComponent<ResetSquareProps> = ({}) => {
   /*******************************************************************************************************************
    *
@@ -37,9 +34,12 @@ const ResetSquare: FunctionComponent<ResetSquareProps> = ({}) => {
    *******************************************************************************************************************/
 
   return (
-    <a.div style={styles} className='btn rounded-circle btn-dark' onClick={handleClick}>
-      <i className='bi bi-arrow-clockwise' />
-    </a.div>
+    <span>
+      <a.div style={styles} className='btn rounded-pill btn-dark' onClick={handleClick}>
+        <i className='bi bi-arrow-clockwise' />
+        &nbsp; Reset the Square
+      </a.div>
+    </span>
   )
 }
 

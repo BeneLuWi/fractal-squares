@@ -2,7 +2,6 @@ import React, { FunctionComponent, useState } from 'react'
 import { Button } from 'react-bootstrap'
 import FancyModal from '../../components/FancyModal'
 import ResetSquare from '../ResetSquare'
-import SquareEditor from '../../square-editor/SquareEditor'
 
 type DataControlProps = {}
 
@@ -35,7 +34,6 @@ const DataControl: FunctionComponent<DataControlProps> = ({}) => {
         <i className='bi bi-back' />
       </Button>
       <FancyModal show={show} close={toggleShow}>
-        <hr className='text-white' />
         <div className='d-flex justify-content-around p-3'>
           <ResetSquare />
         </div>
