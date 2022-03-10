@@ -5,7 +5,7 @@ import DataControl from './data-control/DataControl'
 
 type SquareControlProps = {}
 
-const SquareControl: FunctionComponent<SquareControlProps> = () => {
+const ButtonBar: FunctionComponent<SquareControlProps> = () => {
   /*******************************************************************************************************************
    *
    *  Hooks
@@ -34,4 +34,4 @@ const SquareControl: FunctionComponent<SquareControlProps> = () => {
   )
 }
 
-export default SquareControl
+export default ButtonBar
