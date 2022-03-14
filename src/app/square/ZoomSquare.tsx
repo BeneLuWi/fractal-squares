@@ -24,9 +24,9 @@ const ZoomSquare: FunctionComponent<ZoomSquareProps> = ({}) => {
    *******************************************************************************************************************/
 
   return (
-    <div>
+    <svg viewBox='0 0 10 10' preserveAspectRatio='none'>
       <Square path={[]} />
-    </div>
+    </svg>
   )
 
   // if (!zoomPath.length) return <Square path={[]} />

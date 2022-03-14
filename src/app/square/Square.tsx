@@ -51,16 +51,24 @@ const Square: FunctionComponent<SquareProps> = ({ path, color }) => {
    *******************************************************************************************************************/
   if (node.a || node.b || node.c || node.d)
     return (
-      <div className='square' style={{ backgroundColor: node.color }}>
-        <div className='d-flex w-100'>
-          <div className='w-50'> {node.a && <Square path={[...path, 'a']} />}</div>
-          <div className='w-50'> {node.b && <Square path={[...path, 'b']} />}</div>
-        </div>
-        <div className='d-flex w-100'>
-          <div className='w-50'> {node.c && <Square path={[...path, 'c']} />}</div>
-          <div className='w-50'> {node.d && <Square path={[...path, 'd']} />}</div>
-        </div>
-      </div>
+      <svg viewBox='0 0 10 10' preserveAspectRatio='none'>
+        <svg width='100%' height='50%'>
+          <svg width='50%' height='100%' x='5'>
+            {node.a && <Square path={[...path, 'a']} />}
+          </svg>
+          <svg width='50%' height='100%'>
+            {node.b && <Square path={[...path, 'b']} />}
+          </svg>
+        </svg>
+        <svg width='100%' height='50%' y='5'>
+          <svg width='50%' height='100%'>
+            {node.c && <Square path={[...path, 'c']} />}
+          </svg>
+          <svg width='50%' height='100%' x='5'>
+            {node.d && <Square path={[...path, 'd']} />}
+          </svg>
+        </svg>
+      </svg>
     )
   else
     return (
@@ -68,7 +76,9 @@ const Square: FunctionComponent<SquareProps> = ({ path, color }) => {
         from={{ opacity: 1, transform: path.length ? 'scale(0.8)' : 'scale(1)' }}
         to={{ opacity: 1, transform: 'scale(1)' }}
       >
-        {(styles) => <a.div style={{ ...styles, backgroundColor: node.color }} className='square' {...handleTouch} />}
+        {(styles) => (
+          <a.rect transform={styles.transform} fill={node.color} width='100%' height='100%' {...handleTouch} />
+        )}
       </Spring>
     )
 }
