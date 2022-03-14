@@ -1,27 +1,36 @@
-import React, { FunctionComponent, useState } from 'react'
+import React, { FunctionComponent } from 'react'
 import { Button } from 'react-bootstrap'
-import FancyModal from '../../components/FancyModal'
-import ResetSquare from '../ResetSquare'
-import SquareCapture from '../square-capture/SquareCapture'
 
-type DataControlProps = {}
+type SquareCaptureProps = {}
 
-const DataControl: FunctionComponent<DataControlProps> = () => {
+const SquareCapture: FunctionComponent<SquareCaptureProps> = () => {
   /*******************************************************************************************************************
    *
    *  Hooks
    *
    *******************************************************************************************************************/
 
-  const [show, setShow] = useState(false)
-
   /*******************************************************************************************************************
    *
    *  Functions
    *
    *******************************************************************************************************************/
+  const exportAsImage = async (imageFileName: string = 'square') => {
+    // downloadImage(image, imageFileName)
+  }
+  const downloadImage = (blob: string, fileName: string) => {
+    const fakeLink = window.document.createElement('a')
+    fakeLink.className = 'd-none'
+    fakeLink.download = fileName
 
-  const toggleShow = () => setShow(!show)
+    fakeLink.href = blob
+
+    document.body.appendChild(fakeLink)
+    fakeLink.click()
+    document.body.removeChild(fakeLink)
+
+    fakeLink.remove()
+  }
 
   /*******************************************************************************************************************
    *
@@ -30,18 +39,12 @@ const DataControl: FunctionComponent<DataControlProps> = () => {
    *******************************************************************************************************************/
 
   return (
-    <>
-      <Button variant='dark' className='rounded-circle' onClick={toggleShow}>
-        <i className='bi bi-back' />
+    <span className='m-2'>
+      <Button variant='dark' className='rounded-pill' onClick={() => exportAsImage()}>
+        <i className='bi bi-file-image' /> &nbsp; Save as Image
       </Button>
-      <FancyModal show={show} close={toggleShow}>
-        <div className='d-flex justify-content-around p-3 flex-column align-items-center'>
-          <ResetSquare />
-          <SquareCapture />
-        </div>
-      </FancyModal>
-    </>
+    </span>
   )
 }
 
-export default DataControl
+export default SquareCapture

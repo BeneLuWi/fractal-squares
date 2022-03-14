@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import TreeProvider from './tree/TreeProvider'
 import ButtonBar from './button-bar/ButtonBar'
 import ZoomSquare from './square/ZoomSquare'
@@ -17,7 +17,9 @@ const App: React.FunctionComponent = () => {
             style={{ maxWidth: 500 }}
           >
             <div className='display-2 text-white-50'>Fractal Squares</div>
-            <ZoomSquare />
+            <div>
+              <ZoomSquare />
+            </div>
             <ButtonBar />
           </div>
         </div>
