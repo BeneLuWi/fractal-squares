@@ -51,7 +51,7 @@ const Square: FunctionComponent<SquareProps> = ({ path, color }) => {
    *******************************************************************************************************************/
   if (node.a || node.b || node.c || node.d)
     return (
-      <svg viewBox='0 0 10 10' preserveAspectRatio='none'>
+      <svg viewBox='0 0 10 10' preserveAspectRatio='none' fill={node.color} width='100%' height='100%'>
         <svg width='100%' height='50%'>
           <svg width='50%' height='100%' x='5'>
             {node.a && <Square path={[...path, 'a']} />}
@@ -77,7 +77,14 @@ const Square: FunctionComponent<SquareProps> = ({ path, color }) => {
         to={{ opacity: 1, transform: 'scale(1)' }}
       >
         {(styles) => (
-          <a.rect transform={styles.transform} fill={node.color} width='100%' height='100%' {...handleTouch} />
+          <a.rect
+            style={{ transformOrigin: 'center' }}
+            transform={styles.transform}
+            fill={node.color}
+            width='100%'
+            height='100%'
+            {...handleTouch}
+          />
         )}
       </Spring>
     )
