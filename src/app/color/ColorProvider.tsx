@@ -7,7 +7,7 @@ export interface ColorContextType {
   patterns: Pattern[]
   selectedPattern: Pattern
   selectedBasePattern: Pattern
-  setPattern: (pattern: Pattern) => void
+  setPattern: React.Dispatch<Pattern>
 }
 
 export const ColorContext = React.createContext<ColorContextType>(null!)

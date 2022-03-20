@@ -1,4 +1,4 @@
-import React, { CSSProperties, FunctionComponent, useEffect, useRef } from 'react'
+import React, { CSSProperties, FunctionComponent, useRef } from 'react'
 import { a, config, useTransition } from 'react-spring'
 
 type FancyModalProps = {

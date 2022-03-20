@@ -53,10 +53,10 @@ const Square: FunctionComponent<SquareProps> = ({ path, color }) => {
     return (
       <svg viewBox='0 0 10 10' preserveAspectRatio='none' fill={node.color} width='100%' height='100%'>
         <svg width='100%' height='50%'>
-          <svg width='50%' height='100%' x='5'>
+          <svg width='50%' height='100%'>
             {node.a && <Square path={[...path, 'a']} />}
           </svg>
-          <svg width='50%' height='100%'>
+          <svg width='50%' height='100%' x='5'>
             {node.b && <Square path={[...path, 'b']} />}
           </svg>
         </svg>
