@@ -34,7 +34,7 @@ const DataControl: FunctionComponent<DataControlProps> = () => {
       <Button variant='dark' className='rounded-circle' onClick={toggleShow}>
         <i className='bi bi-back' />
       </Button>
-      <FancyModal show={show} close={toggleShow}>
+      <FancyModal show={show} close={() => setShow(false)}>
         <div className='d-flex justify-content-around p-3 flex-column align-items-center'>
           <ResetSquare />
           <SquareCapture />

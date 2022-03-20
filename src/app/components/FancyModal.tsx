@@ -1,4 +1,5 @@
-import React, { CSSProperties, FunctionComponent, useRef } from 'react'
+import React, { CSSProperties, FunctionComponent, useEffect, useRef } from 'react'
+import { a, config, useTransition } from 'react-spring'
 
 type FancyModalProps = {
   show: boolean
@@ -15,6 +16,13 @@ const FancyModal: FunctionComponent<FancyModalProps> = ({ show, close, style, ch
 
   const modalRef = useRef(null)
 
+  const transitions = useTransition(show, {
+    from: { transform: 'scale(0.9)', opacity: 0, top: 50 },
+    enter: { transform: 'scale(1)', opacity: 1, top: 0 },
+    leave: { transform: 'scale(0.9)', opacity: 0, top: -50 },
+    config: config.gentle,
+  })
+
   /*******************************************************************************************************************
    *
    *  Functions
@@ -30,19 +38,23 @@ const FancyModal: FunctionComponent<FancyModalProps> = ({ show, close, style, ch
    *
    *******************************************************************************************************************/
 
-  if (!show) return <></>
-
-  return (
-    <div
-      ref={modalRef}
-      onClick={handleClick}
-      className='position-absolute w-100 h-100 bg-dark bg-opacity-25 overflow-auto p-2'
-      style={{ left: 0, top: 0 }}
-    >
-      <div style={{ bottom: '0', maxWidth: 450 }} className='position-relative bg-dark bg-opacity-75 rounded m-auto'>
-        {children}
-      </div>
-    </div>
+  return transitions(
+    (styles, item) =>
+      item && (
+        <a.div
+          ref={modalRef}
+          onClick={handleClick}
+          className='position-absolute w-100 h-100 bg-dark bg-opacity-25 overflow-auto p-2'
+          style={{ left: 0, top: 0, opacity: styles.opacity }}
+        >
+          <a.div
+            style={{ ...styles, maxWidth: 450 }}
+            className='position-relative bg-dark bg-opacity-75 rounded m-auto'
+          >
+            {children}
+          </a.div>
+        </a.div>
+      )
   )
 }
 

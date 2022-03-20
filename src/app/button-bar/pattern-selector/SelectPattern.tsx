@@ -41,7 +41,7 @@ const SelectPattern: FunctionComponent<SelectPatternProps> = ({}) => {
       <div className='shadow' onClick={toggleSelector} style={{ width: 40 }}>
         <PatternSquare pattern={selectedPattern} />
       </div>
-      <FancyModal show={showSelector} close={toggleSelector}>
+      <FancyModal show={showSelector} close={() => setShowSelector(false)}>
         <div className='d-flex justify-content-around row'>
           {patterns
             .filter((p) => !p.single)
