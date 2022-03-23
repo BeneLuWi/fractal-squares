@@ -20,7 +20,9 @@ const FancyModal: FunctionComponent<FancyModalProps> = ({ show, close, style, ch
     from: { transform: 'scale(0.9)', opacity: 0, top: 50 },
     enter: { transform: 'scale(1)', opacity: 1, top: 0 },
     leave: { transform: 'scale(0.9)', opacity: 0, top: -50 },
-    config: config.gentle,
+    config: {
+      duration: 200,
+    },
   })
 
   /*******************************************************************************************************************

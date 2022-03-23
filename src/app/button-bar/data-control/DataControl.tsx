@@ -15,7 +15,6 @@ const DataControl: FunctionComponent<DataControlProps> = () => {
    *******************************************************************************************************************/
 
   const [show, setShow] = useState(false)
-  const [imgData, setImage] = useState('')
   const treeRoot = useRef(null)
 
   /*******************************************************************************************************************
@@ -46,7 +45,7 @@ const DataControl: FunctionComponent<DataControlProps> = () => {
 
       const dataURL = canvas.toDataURL('image/png', 1.0)
       const a = document.createElement('a')
-      a.download = 'download.png'
+      a.download = 'fractal-square.png'
       a.href = dataURL
       a.click()
       //canvas.parentNode.removeChild(canvas);
@@ -69,7 +68,7 @@ const DataControl: FunctionComponent<DataControlProps> = () => {
           <ResetSquare />
           <span className='m-2'>
             <Button variant='dark' className='rounded-pill' onClick={saveAsImg2}>
-              <i className='bi bi-file-image' /> &nbsp; Save as Image
+              <i className='bi bi-file-image' /> &nbsp; Download as Image
             </Button>
           </span>
           <div className='w-50'>

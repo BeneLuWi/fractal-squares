@@ -5,3 +5,11 @@ canvas {
   image-rendering: pixelated;
   image-rendering: crisp-edges;
 }
+html, body {
+    margin: 0;
+    height: 100%;
+}
+
+#root {
+  height: 100%;
+}
