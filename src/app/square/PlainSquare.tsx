@@ -2,22 +2,20 @@ import React, { FunctionComponent } from 'react'
 import './style.css'
 import { SquareNode, SquarePath } from './types'
 import { useTree } from '../tree/TreeProvider'
-import { a, Spring } from 'react-spring'
-import { useLongPress } from 'use-long-press'
 
-type SquareProps = {
+type PlainSquareSquareProps = {
   path: SquarePath
   color?: string
 }
 
-const Square: FunctionComponent<SquareProps> = ({ path, color }) => {
+const PlainSquare: FunctionComponent<PlainSquareSquareProps> = ({ path, color }) => {
   /*******************************************************************************************************************
    *
    *  Hooks
    *
    *******************************************************************************************************************/
 
-  const { tree, updateNode, zoomIn } = useTree()
+  const { tree } = useTree()
 
   /*******************************************************************************************************************
    *
@@ -31,19 +29,6 @@ const Square: FunctionComponent<SquareProps> = ({ path, color }) => {
   })
   const node = treeIter
 
-  const handleClick = (event?: any) => {
-    if (event && event.type === 'mouseup') updateNode(path, { color: node.color })
-  }
-
-  const handleRemove = () => {
-    updateNode(path.slice(0, path.length - 1), { color: node.color }, true)
-  }
-
-  const handleTouch = useLongPress(handleRemove, {
-    onCancel: (event) => handleClick(event),
-    captureEvent: true,
-  })
-
   /*******************************************************************************************************************
    *
    *  Rendering
@@ -54,41 +39,34 @@ const Square: FunctionComponent<SquareProps> = ({ path, color }) => {
       <svg viewBox='0 0 10 10' preserveAspectRatio='none' fill={node.color} width='100%' height='100%'>
         <svg width='100%' height='50%'>
           <svg width='50%' height='100%'>
-            {node.a && <Square path={[...path, 'a']} />}
+            {node.a && <PlainSquare path={[...path, 'a']} />}
           </svg>
           <svg width='50%' height='100%' x='5'>
-            {node.b && <Square path={[...path, 'b']} />}
+            {node.b && <PlainSquare path={[...path, 'b']} />}
           </svg>
         </svg>
         <svg width='100%' height='50%' y='5'>
           <svg width='50%' height='100%'>
-            {node.c && <Square path={[...path, 'c']} />}
+            {node.c && <PlainSquare path={[...path, 'c']} />}
           </svg>
           <svg width='50%' height='100%' x='5'>
-            {node.d && <Square path={[...path, 'd']} />}
+            {node.d && <PlainSquare path={[...path, 'd']} />}
           </svg>
         </svg>
       </svg>
     )
   else
     return (
-      <Spring
-        from={{ opacity: 1, transform: path.length ? 'scale(0.8)' : 'scale(1)' }}
-        to={{ opacity: 1, transform: 'scale(1)' }}
-      >
-        {(styles) => (
-          <a.rect
-            shapeRendering='crispEdges'
-            style={{ transformOrigin: 'center' }}
-            transform={styles.transform}
-            fill={node.color}
-            width='100%'
-            height='100%'
-            {...handleTouch}
-          />
-        )}
-      </Spring>
+      <rect
+        shapeRendering='crispEdges'
+        style={{ transformOrigin: 'center', transform: 'scale(1.01)' }}
+        fill={node.color}
+        width='100%'
+        height='100%'
+        stroke={node.color}
+        strokeWidth='1px'
+      />
     )
 }
 
-export default Square
+export default PlainSquare

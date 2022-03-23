@@ -6,6 +6,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css'
 import App from './app/App'
 import reportWebVitals from './reportWebVitals'
 import * as serviceWorkerRegistration from './serviceWorkerRegistration'
+import './index.css'
 
 ReactDOM.render(
   <React.StrictMode>
