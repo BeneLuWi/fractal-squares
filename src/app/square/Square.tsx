@@ -73,17 +73,18 @@ const Square: FunctionComponent<SquareProps> = ({ path, color }) => {
   else
     return (
       <Spring
-        from={{ opacity: 1, transform: path.length ? 'scale(0.8)' : 'scale(1)' }}
+        from={{ opacity: 1, transform: path.length ? 'scale(0.7)' : 'scale(1)' }}
         to={{ opacity: 1, transform: 'scale(1)' }}
       >
         {(styles) => (
           <a.rect
-            shapeRendering='crispEdges'
             style={{ transformOrigin: 'center' }}
             transform={styles.transform}
             fill={node.color}
             width='100%'
             height='100%'
+            strokeWidth='0.1px'
+            stroke={node.color}
             {...handleTouch}
           />
         )}
