@@ -1,16 +1,15 @@
 import React, { FunctionComponent } from 'react'
-import { useTree } from '../tree/TreeProvider'
 import Square from './Square'
 
 type ZoomSquareProps = {}
 
-const ZoomSquare: FunctionComponent<ZoomSquareProps> = ({}) => {
+const ZoomSquare: FunctionComponent<ZoomSquareProps> = () => {
   /*******************************************************************************************************************
    *
    *  Hooks
    *
    *******************************************************************************************************************/
-  const { zoomPath } = useTree()
+
   /*******************************************************************************************************************
    *
    *  Functions
@@ -28,10 +27,6 @@ const ZoomSquare: FunctionComponent<ZoomSquareProps> = ({}) => {
       <Square path={[]} />
     </svg>
   )
-
-  // if (!zoomPath.length) return <Square path={[]} />
-  //
-  // return <Square path={zoomPath} />
 }
 
 export default ZoomSquare
