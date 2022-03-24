@@ -49,7 +49,7 @@ const TreeProvider: FunctionComponent<TreeProviderProps> = ({ children }) => {
       const newNode = expand ? node : selectedPattern.single ? selectedPattern.a : { ...node, ...selectedPattern }
       let newTree: SquareNode = updateNodeInTree(path, newNode, JSON.parse(JSON.stringify(tree)))
       setTree(newTree)
-      setHistory([...history, newTree])
+      setHistory([...history.slice(-5), newTree])
     }
   }
 
