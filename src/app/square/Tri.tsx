@@ -51,20 +51,22 @@ const Tri: FunctionComponent<TriProps> = ({ path, color }) => {
    *******************************************************************************************************************/
   if (node.a || node.b || node.c || node.d)
     return (
-      <svg viewBox='0 0 100 86' preserveAspectRatio='none' fill={node.color} width='100%' height='100%'>
-        <svg width='100%' height='100%'>
+      <svg viewBox='0 0 100 86' preserveAspectRatio='none' fill={node.color}>
+        <svg width='50%' height='50%' x='25' viewBox='0 0 100 86'>
           {node.a && <Tri path={[...path, 'a']} />}
         </svg>
-        <svg width='100%' height='100%' x='5'>
-          {node.b && <Tri path={[...path, 'b']} />}
+        <svg width='50%' height='50%' y='43' x='25' viewBox='0 0 100 86'>
+          {node.d && (
+            <g transform='rotate(180)' style={{ transformOrigin: 'center' }}>
+              <Tri path={[...path, 'd']} />
+            </g>
+          )}
         </svg>
-        <svg width='100%' height='100%' y='43'>
-          <svg width='100%' height='100%'>
-            {node.c && <Tri path={[...path, 'c']} />}
-          </svg>
-          <svg width='100%' height='100%' x='5'>
-            {node.d && <Tri path={[...path, 'd']} />}
-          </svg>
+        <svg width='50%' height='50%' x='0' y='43' viewBox='0 0 100 86'>
+          {node.c && <Tri path={[...path, 'c']} />}
+        </svg>
+        <svg width='50%' height='50%' x='50' y='43' viewBox='0 0 100 86'>
+          {node.b && <Tri path={[...path, 'b']} />}
         </svg>
       </svg>
     )
@@ -80,8 +82,6 @@ const Tri: FunctionComponent<TriProps> = ({ path, color }) => {
             style={{ transformOrigin: 'center' }}
             transform={styles.transform}
             fill={node.color}
-            width='100%'
-            height='100%'
             {...handleTouch}
           />
         )}
