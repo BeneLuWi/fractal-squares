@@ -2,8 +2,9 @@ import React, { FunctionComponent, useRef, useState } from 'react'
 import { Button } from 'react-bootstrap'
 import FancyModal from '../../components/FancyModal'
 import ResetSquare from '../ResetSquare'
-import SquareCapture from '../square-capture/SquareCapture'
+import { GameType, useTree } from '../../tree/TreeProvider'
 import PlainSquare from '../../square/PlainSquare'
+import PlainTri from '../../square/PlainTri'
 
 type DataControlProps = {}
 
@@ -16,7 +17,7 @@ const DataControl: FunctionComponent<DataControlProps> = () => {
 
   const [show, setShow] = useState(false)
   const treeRoot = useRef(null)
-
+  const { gameType } = useTree()
   /*******************************************************************************************************************
    *
    *  Functions
@@ -31,16 +32,17 @@ const DataControl: FunctionComponent<DataControlProps> = () => {
     const canvas = document.createElement('canvas')
     const img_to_download = document.createElement('img')
     const dpx = window.devicePixelRatio || 1
-    const size = 500 * dpx
+    const width = 500 * dpx
+    const height = gameType === GameType.SQUARE ? 500 * dpx : 430 * dpx
     img_to_download.src = 'data:image/svg+xml;base64,' + window.btoa(svgData)
     img_to_download.onload = function () {
-      canvas.setAttribute('width', `${size}`)
-      canvas.setAttribute('height', `${size}`)
+      canvas.setAttribute('width', `${width}`)
+      canvas.setAttribute('height', `${height}`)
       const context = canvas.getContext('2d')
       if (!context) return
       context.imageSmoothingEnabled = false
 
-      context.drawImage(img_to_download, 0, 0, size, size)
+      context.drawImage(img_to_download, 0, 0, width, height)
       context.scale(dpx, dpx)
 
       const dataURL = canvas.toDataURL('image/png', 1.0)
@@ -72,9 +74,15 @@ const DataControl: FunctionComponent<DataControlProps> = () => {
             </Button>
           </span>
           <div className='w-50'>
-            <svg ref={treeRoot} viewBox='0 0 10 10' preserveAspectRatio='none'>
-              <PlainSquare path={[]} />
-            </svg>
+            {gameType === GameType.SQUARE ? (
+              <svg ref={treeRoot} viewBox='0 0 10 10' preserveAspectRatio='none'>
+                <PlainSquare path={[]} />
+              </svg>
+            ) : (
+              <svg ref={treeRoot} viewBox='0 0 100 86' preserveAspectRatio='none'>
+                <PlainTri path={[]} />
+              </svg>
+            )}
           </div>
         </div>
       </FancyModal>
