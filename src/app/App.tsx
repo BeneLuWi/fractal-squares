@@ -1,7 +1,7 @@
 import React, { useRef } from 'react'
 import TreeProvider from './tree/TreeProvider'
 import ButtonBar from './button-bar/ButtonBar'
-import ZoomSquare from './square/ZoomSquare'
+import ContentRoot from './square/ContentRoot'
 import ColorProvider from './color/ColorProvider'
 
 const App: React.FunctionComponent = () => {
@@ -18,7 +18,7 @@ const App: React.FunctionComponent = () => {
           >
             <div className='display-2 text-white-50'>Fractal Squares</div>
             <div>
-              <ZoomSquare />
+              <ContentRoot />
             </div>
             <ButtonBar />
           </div>

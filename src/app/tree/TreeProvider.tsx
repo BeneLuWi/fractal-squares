@@ -11,6 +11,12 @@ export type TreeContextType = {
   undo: VoidFunction
   zoomPath: SquarePath
   zoomIn: (path: SquarePath) => void
+  gameType: GameType
+}
+
+export enum GameType {
+  SQUARE,
+  TRI,
 }
 
 export const useTree = () => React.useContext(TreeContext)
@@ -27,6 +33,8 @@ const TreeProvider: FunctionComponent<TreeProviderProps> = ({ children }) => {
    *******************************************************************************************************************/
 
   const { selectedPattern } = useColor()
+
+  const [gameType, setGameType] = useState(GameType.TRI)
 
   const [tree, setTree] = useState<SquareNode>(defaultTree)
 
@@ -69,7 +77,11 @@ const TreeProvider: FunctionComponent<TreeProviderProps> = ({ children }) => {
    *
    *******************************************************************************************************************/
 
-  return <TreeContext.Provider value={{ tree, updateNode, undo, zoomPath, zoomIn }}>{children}</TreeContext.Provider>
+  return (
+    <TreeContext.Provider value={{ tree, updateNode, undo, zoomPath, zoomIn, gameType }}>
+      {children}
+    </TreeContext.Provider>
+  )
 }
 
 export default TreeProvider
