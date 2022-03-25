@@ -5,6 +5,8 @@ import { Pattern } from '../../color/patterns'
 import FancyModal from '../../components/FancyModal'
 import { PatternFactory } from '../../color/ColorService'
 import { Button } from 'react-bootstrap'
+import { useTree } from '../../tree/TreeProvider'
+import PatternPreview from './PatternPreview'
 
 type SelectPatternProps = {}
 
@@ -17,7 +19,7 @@ const SelectPattern: FunctionComponent<SelectPatternProps> = () => {
 
   const [showSelector, setShowSelector] = useState(false)
   const { selectedPattern, setPattern, patterns, selectedBasePattern } = useColor()
-
+  const { gameType } = useTree()
   /*******************************************************************************************************************
    *
    *  Functions
@@ -51,7 +53,7 @@ const SelectPattern: FunctionComponent<SelectPatternProps> = () => {
     <>
       <div className='d-flex'>
         <div className='shadow' onClick={toggleSelector} style={{ width: 40 }}>
-          <PatternSquare pattern={selectedPattern} />
+          <PatternPreview pattern={selectedPattern} gameType={gameType} />
         </div>
         <Button
           size='sm'
@@ -69,7 +71,7 @@ const SelectPattern: FunctionComponent<SelectPatternProps> = () => {
             .filter((p) => !p.single)
             .map((p) => (
               <div key={p.id} onClick={() => handleSelect(p)} className='m-3' style={{ width: 120 }}>
-                <PatternSquare pattern={p} />
+                <PatternPreview pattern={p} gameType={gameType} />
               </div>
             ))}
         </div>
@@ -77,12 +79,12 @@ const SelectPattern: FunctionComponent<SelectPatternProps> = () => {
         <div className='d-flex'>
           {PatternFactory(selectedBasePattern).map((p) => (
             <div key={p.id} onClick={() => handleSelect(p)} className='m-3' style={{ width: 120 }}>
-              <PatternSquare pattern={p} />
+              <PatternPreview pattern={p} gameType={gameType} />
             </div>
           ))}
           <div className='text-white vr' />
           <div onClick={() => handleSelect(selectedBasePattern)} className='m-3' style={{ width: 120 }}>
-            <PatternSquare pattern={selectedBasePattern} />
+            <PatternPreview pattern={selectedBasePattern} gameType={gameType} />
           </div>
         </div>
       </FancyModal>

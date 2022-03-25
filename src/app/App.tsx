@@ -3,6 +3,7 @@ import TreeProvider from './tree/TreeProvider'
 import ButtonBar from './button-bar/ButtonBar'
 import ContentRoot from './square/ContentRoot'
 import ColorProvider from './color/ColorProvider'
+import Title from './Title'
 
 const App: React.FunctionComponent = () => {
   return (
@@ -16,7 +17,7 @@ const App: React.FunctionComponent = () => {
             className='h-100 m-auto d-flex flex-column justify-content-between overflow-hidden'
             style={{ maxWidth: 500 }}
           >
-            <div className='display-2 text-white-50'>Fractal Squares</div>
+            <Title />
             <div>
               <ContentRoot />
             </div>

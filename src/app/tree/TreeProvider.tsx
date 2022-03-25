@@ -12,6 +12,7 @@ export type TreeContextType = {
   zoomPath: SquarePath
   zoomIn: (path: SquarePath) => void
   gameType: GameType
+  setGameType: React.Dispatch<GameType>
 }
 
 export enum GameType {
@@ -78,7 +79,7 @@ const TreeProvider: FunctionComponent<TreeProviderProps> = ({ children }) => {
    *******************************************************************************************************************/
 
   return (
-    <TreeContext.Provider value={{ tree, updateNode, undo, zoomPath, zoomIn, gameType }}>
+    <TreeContext.Provider value={{ tree, updateNode, undo, zoomPath, zoomIn, gameType, setGameType }}>
       {children}
     </TreeContext.Provider>
   )

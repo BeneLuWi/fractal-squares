@@ -51,7 +51,7 @@ const Tri: FunctionComponent<TriProps> = ({ path, color }) => {
    *******************************************************************************************************************/
   if (node.a || node.b || node.c || node.d)
     return (
-      <svg viewBox='0 0 100 86' preserveAspectRatio='none' fill={node.color}>
+      <svg viewBox='0 0 100 86' preserveAspectRatio='none'>
         <svg width='50%' height='50%' x='25' viewBox='0 0 100 86'>
           {node.a && <Tri path={[...path, 'a']} />}
         </svg>
