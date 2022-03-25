@@ -63,7 +63,7 @@ const DataControl: FunctionComponent<DataControlProps> = () => {
   return (
     <>
       <Button variant='dark' className='rounded-circle' onClick={toggleShow}>
-        <i className='bi bi-back' />
+        <i className='bi bi-three-dots' />
       </Button>
       <FancyModal show={show} close={() => setShow(false)}>
         <div className='d-flex justify-content-around p-3 flex-column align-items-center'>

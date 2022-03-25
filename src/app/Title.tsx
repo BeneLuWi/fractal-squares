@@ -30,7 +30,7 @@ const Title: FunctionComponent<TitleProps> = () => {
 
   return (
     <div style={{ cursor: 'pointer' }} className='display-2 text-white-50' onClick={handleChange}>
-      Fractal {gameType === GameType.SQUARE ? 'Squares' : 'Triangles'}
+      Fractal <u>{gameType === GameType.SQUARE ? 'Squares' : 'Triangles'}</u>
     </div>
   )
 }
