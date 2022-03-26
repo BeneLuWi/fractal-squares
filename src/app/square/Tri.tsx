@@ -2,7 +2,7 @@ import React, { FunctionComponent } from 'react'
 import './style.css'
 import { SquareNode, SquarePath } from './types'
 import { useTree } from '../tree/TreeProvider'
-import { a, Spring } from 'react-spring'
+import { a, config, easings, Spring } from 'react-spring'
 import { useLongPress } from 'use-long-press'
 
 type TriProps = {
@@ -73,7 +73,8 @@ const Tri: FunctionComponent<TriProps> = ({ path, color }) => {
   else
     return (
       <Spring
-        from={{ opacity: 1, transform: path.length ? 'scale(0.7)' : 'scale(1)' }}
+        config={{ duration: 500, easing: easings.easeInBack }}
+        from={{ opacity: 1, transform: path.length ? 'scale(0.9)' : 'scale(1)' }}
         to={{ opacity: 1, transform: 'scale(1)' }}
       >
         {(styles) => (
