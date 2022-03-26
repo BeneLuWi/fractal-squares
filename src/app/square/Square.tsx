@@ -2,7 +2,7 @@ import React, { FunctionComponent } from 'react'
 import './style.css'
 import { SquareNode, SquarePath } from './types'
 import { useTree } from '../tree/TreeProvider'
-import { a, config, easings, Spring } from 'react-spring'
+import { a, easings, Spring } from 'react-spring'
 import { useLongPress } from 'use-long-press'
 
 type SquareProps = {
