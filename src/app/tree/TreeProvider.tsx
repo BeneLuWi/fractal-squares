@@ -35,7 +35,7 @@ const TreeProvider: FunctionComponent<TreeProviderProps> = ({ children }) => {
 
   const { selectedPattern } = useColor()
 
-  const [gameType, setGameType] = useState(GameType.TRI)
+  const [gameType, setGameType] = useState(GameType.SQUARE)
 
   const [tree, setTree] = useState<SquareNode>(defaultTree)
 
