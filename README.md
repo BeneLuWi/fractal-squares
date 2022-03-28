@@ -6,3 +6,8 @@ But, a GIF says more than 1000 words:
 ![](fractal-squares-demo.gif)
 
 Check it out at: https://beneluwi.github.io/fractal-squares/
+
+## Upcoming Features
+- Zoom in and out
+- More Colors
+- Share per Url (-> Quadtree Encoding)
