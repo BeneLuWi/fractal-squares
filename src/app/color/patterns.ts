@@ -16,4 +16,13 @@ export const DefaultPatterns: Pattern[] = [
   { id: 'grey', a: { color: '#5f5f5f' }, b: { color: '#7e7e7e' }, c: { color: '#b1b1b1' }, d: { color: '#d8d8d8' } },
   { id: 'teal', a: { color: '#005950' }, b: { color: '#00766a' }, c: { color: '#00dcc6' }, d: { color: '#6efff1' } },
   { id: 'pink', a: { color: '#910e3a' }, b: { color: '#c1134d' }, c: { color: '#ed4d82' }, d: { color: '#f6a6c1' } },
+  { id: 'blue', a: { color: '#085a9d' }, b: { color: '#0b78d1' }, c: { color: '#4daaf6' }, d: { color: '#a6d4fa' } },
+  { id: 'indigo', a: { color: '#26316d' }, b: { color: '#334191' }, c: { color: '#6271c8' }, d: { color: '#b1b8e3' } },
+  {
+    id: 'deep-orange',
+    a: { color: '#ae2900' },
+    b: { color: '#e93600' },
+    c: { color: '#ff7850' },
+    d: { color: '#ffbca7' },
+  },
 ]
