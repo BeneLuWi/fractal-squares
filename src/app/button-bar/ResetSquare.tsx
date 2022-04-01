@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react'
-import { useTree } from '../tree/TreeProvider'
+import { GameType, useTree } from '../tree/TreeProvider'
 import { Button } from 'react-bootstrap'
 
 type ResetSquareProps = {}
@@ -11,7 +11,7 @@ const ResetSquare: FunctionComponent<ResetSquareProps> = ({}) => {
    *
    *******************************************************************************************************************/
 
-  const { updateNode } = useTree()
+  const { updateNode, gameType } = useTree()
 
   /*******************************************************************************************************************
    *
@@ -31,7 +31,7 @@ const ResetSquare: FunctionComponent<ResetSquareProps> = ({}) => {
   return (
     <span className='m-2'>
       <Button variant='dark' className='rounded-pill' onClick={handleClick}>
-        <i className='bi bi-arrow-clockwise' /> &nbsp; Reset the Square
+        <i className='bi bi-arrow-clockwise' /> &nbsp; Reset the {gameType === GameType.SQUARE ? 'Square' : 'Triangle'}
       </Button>
     </span>
   )

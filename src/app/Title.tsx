@@ -29,7 +29,7 @@ const Title: FunctionComponent<TitleProps> = () => {
    *******************************************************************************************************************/
 
   return (
-    <div style={{ cursor: 'pointer', userSelect: 'none' }} className='display-2 text-white-50' onClick={handleChange}>
+    <div style={{ cursor: 'pointer', userSelect: 'none' }} className='display-3 text-white-50' onClick={handleChange}>
       Fractal <u>{gameType === GameType.SQUARE ? 'Squares' : 'Triangles'}</u>
     </div>
   )
