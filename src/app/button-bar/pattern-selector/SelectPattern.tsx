@@ -1,5 +1,4 @@
 import React, { FunctionComponent, useState } from 'react'
-import PatternSquare from './PatternSquare'
 import { useColor } from '../../color/ColorProvider'
 import { Pattern } from '../../color/patterns'
 import FancyModal from '../../components/FancyModal'

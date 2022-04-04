@@ -23,7 +23,7 @@ const ColorProvider: FunctionComponent<ColorProviderProps> = ({ children }) => {
    *
    *******************************************************************************************************************/
 
-  const [patterns, setPatterns] = useState<Pattern[]>(DefaultPatterns)
+  const [patterns] = useState<Pattern[]>(DefaultPatterns)
 
   const [selectedPattern, setSelectedPattern] = useState<Pattern>(DefaultPatterns[0])
   const [selectedBasePattern, setSelectedBasePattern] = useState<Pattern>(DefaultPatterns[0])

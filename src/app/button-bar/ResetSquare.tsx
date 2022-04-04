@@ -4,7 +4,7 @@ import { Button } from 'react-bootstrap'
 
 type ResetSquareProps = {}
 
-const ResetSquare: FunctionComponent<ResetSquareProps> = ({}) => {
+const ResetSquare: FunctionComponent<ResetSquareProps> = () => {
   /*******************************************************************************************************************
    *
    *  Hooks

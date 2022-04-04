@@ -1,5 +1,5 @@
 import React, { CSSProperties, FunctionComponent, useRef } from 'react'
-import { a, config, useTransition } from 'react-spring'
+import { a, useTransition } from 'react-spring'
 
 type FancyModalProps = {
   show: boolean
@@ -7,7 +7,7 @@ type FancyModalProps = {
   style?: CSSProperties
 }
 
-const FancyModal: FunctionComponent<FancyModalProps> = ({ show, close, style, children }) => {
+const FancyModal: FunctionComponent<FancyModalProps> = ({ show, close, children }) => {
   /*******************************************************************************************************************
    *
    *  Hooks
