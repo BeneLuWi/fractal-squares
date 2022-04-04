@@ -5,6 +5,7 @@ import ResetSquare from '../ResetSquare'
 import { GameType, useTree } from '../../tree/TreeProvider'
 import PlainSquare from '../../square/PlainSquare'
 import PlainTri from '../../square/PlainTri'
+import { json } from 'stream/consumers'
 
 type DataControlProps = {}
 
@@ -17,7 +18,7 @@ const DataControl: FunctionComponent<DataControlProps> = () => {
 
   const [show, setShow] = useState(false)
   const treeRoot = useRef(null)
-  const { gameType } = useTree()
+  const { gameType, tree } = useTree()
   /*******************************************************************************************************************
    *
    *  Functions
@@ -55,7 +56,7 @@ const DataControl: FunctionComponent<DataControlProps> = () => {
   }
 
   /*******************************************************************************************************************
-   *
+
    *  Rendering
    *
    *******************************************************************************************************************/
