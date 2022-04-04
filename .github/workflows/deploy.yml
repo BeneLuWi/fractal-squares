@@ -3,13 +3,12 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           persist-credentials: false
       - name: Install and Build
@@ -19,6 +18,8 @@ jobs:
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4.2.5
         with:
+          git-config-name: BeneLuWi
+          git-config-email: b.lueken.winkels@gmail.com
           repository-name: BeneLuWi/beneluwi.github.io
           token: ${{ secrets.GH_PAGES_TOKEN }}
           branch: master
