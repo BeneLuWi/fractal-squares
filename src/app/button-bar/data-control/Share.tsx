@@ -31,7 +31,7 @@ const Share: FunctionComponent<ShareProps> = ({}) => {
   return (
     <span className='m-2'>
       <Button variant='dark' className='rounded-pill' onClick={handleClick}>
-        <i className='bi bi-file-image' /> &nbsp; Share as Link
+        <i className='bi bi-file-image' /> &nbsp;Share as Link
       </Button>
     </span>
   )
