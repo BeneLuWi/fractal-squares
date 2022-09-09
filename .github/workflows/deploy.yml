@@ -22,6 +22,6 @@ jobs:
           git-config-email: b.lueken.winkels@gmail.com
           repository-name: BeneLuWi/beneluwi.github.io
           token: ${{ secrets.GH_PAGES_TOKEN }}
-          branch: master
+          branch: main
           folder: build
-          target-folder: fractal-squares
+          target-folder: apps/fractal-squares
